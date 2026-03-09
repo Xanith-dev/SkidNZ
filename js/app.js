@@ -386,6 +386,3 @@ async function submitForm() {
     window.history.replaceState({}, '', window.location.pathname);
   }
 })();
-
-// ── Init: load events from API ────────────────────────
-fetchEvents();
