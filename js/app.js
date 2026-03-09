@@ -141,7 +141,7 @@ function renderSeries() {
     <div class="hero">
       <div class="skid-mark"></div>
       <div class="hero-label">// Championship Series</div>
-      <h1>THE<br><em>CHASE</em></h1>
+      <h1>DRIFT<br><em>EVENTS</em></h1>
       <p class="hero-sub">Four active championships across Aotearoa. Points, standings, and season progress.</p>
     </div>
     ${seriesData.map(s => `
