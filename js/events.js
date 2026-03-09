@@ -1,18 +1,135 @@
-// SKID NZ — Event Data (loaded from API)
-// Events are now fetched from the backend at runtime.
+// SKID NZ — Event Data
+const API_URL = "http://localhost:8000";
 
-const API_URL = "http://localhost:8000"; // Change to your deployed backend URL
+const events = [
+  {
+    id: 1,
+    title: "DRIFT NATIONALS RD.1",
+    date: "15 MAR 2025",
+    loc: "Pukekohe Park Raceway",
+    region: "North Island",
+    type: "comp",
+    tags: ["COMPETITION", "PRO-AM"],
+    entry: "$180",
+    entry_cents: 18000,
+    desc: "Round 1 of the NZ Drift Nationals. Open to Pro and Pro-Am class. Twin battles from 2pm. Gates open 8am.",
+    hot: true,
+    sold: false,
+  },
+  {
+    id: 2,
+    title: "WAIKATO CLUB DAY",
+    date: "22 MAR 2025",
+    loc: "Hampton Downs Motorsport Park",
+    region: "North Island",
+    type: "club",
+    tags: ["CLUB DAY", "ALL CLASSES"],
+    entry: "$120",
+    entry_cents: 12000,
+    desc: "Monthly open club day. All skill levels welcome. Noise limit 95dB. Bring your own tyres.",
+    hot: false,
+    sold: false,
+  },
+  {
+    id: 3,
+    title: "SOUTH ISLAND OPEN",
+    date: "5 APR 2025",
+    loc: "Ruapuna Raceway, Christchurch",
+    region: "South Island",
+    type: "comp",
+    tags: ["COMPETITION", "AMATEUR"],
+    entry: "$160",
+    entry_cents: 16000,
+    desc: "Christchurch's biggest amateur drift competition. 3 classes: Street, Modified, Open.",
+    hot: true,
+    sold: false,
+  },
+  {
+    id: 4,
+    title: "TYRE SMOKE FRIDAY",
+    date: "11 APR 2025",
+    loc: "Meremere Dragway",
+    region: "North Island",
+    type: "practice",
+    tags: ["PRACTICE", "NIGHT SESSION"],
+    entry: "$90",
+    entry_cents: 9000,
+    desc: "Friday night practice under floodlights. 6pm–11pm. 50 car limit — book early.",
+    hot: false,
+    sold: false,
+  },
+  {
+    id: 5,
+    title: "DRIFT NATIONALS RD.2",
+    date: "26 APR 2025",
+    loc: "Manfeild Circuit Chris Amon",
+    region: "North Island",
+    type: "comp",
+    tags: ["COMPETITION", "PRO-AM"],
+    entry: "$180",
+    entry_cents: 18000,
+    desc: "Round 2 heads to Manfeild. Fast sweeping layout rewards committed entries. Full livestream.",
+    hot: true,
+    sold: false,
+  },
+  {
+    id: 6,
+    title: "OTAGO GRASSROOTS",
+    date: "3 MAY 2025",
+    loc: "Cromwell Motorsport Park",
+    region: "South Island",
+    type: "club",
+    tags: ["CLUB DAY", "GRASSROOTS"],
+    entry: "$80",
+    entry_cents: 8000,
+    desc: "Low key club day in Central Otago. Relaxed atmosphere, great community. BYO fuel.",
+    hot: false,
+    sold: false,
+  },
+  {
+    id: 7,
+    title: "ROTORUA SHRED DAY",
+    date: "17 MAY 2025",
+    loc: "Rotorua International Raceway",
+    region: "North Island",
+    type: "practice",
+    tags: ["PRACTICE", "ALL DAY"],
+    entry: "$100",
+    entry_cents: 10000,
+    desc: "Full-day practice session on the club track. Instructors available for novices.",
+    hot: false,
+    sold: false,
+  },
+  {
+    id: 8,
+    title: "WINTER SERIES RD.1",
+    date: "7 JUN 2025",
+    loc: "Taupo Motorsport Park",
+    region: "North Island",
+    type: "comp",
+    tags: ["COMPETITION", "SERIES"],
+    entry: "$150",
+    entry_cents: 15000,
+    desc: "Kick off the winter series at Taupo. Points rounds count toward year-end championship.",
+    hot: true,
+    sold: false,
+  },
+  {
+    id: 9,
+    title: "SOUTH ISLAND CLUB",
+    date: "14 JUN 2025",
+    loc: "Mike Pero Motorsport Park",
+    region: "South Island",
+    type: "club",
+    tags: ["CLUB DAY"],
+    entry: "$110",
+    entry_cents: 11000,
+    desc: "Ruapuna club round. Judging practice format — great for learning competition lines.",
+    hot: false,
+    sold: true,
+  },
+];
 
-let events = []; // populated by fetchEvents()
-
-async function fetchEvents() {
-  try {
-    const res = await fetch(`${API_URL}/events`);
-    if (!res.ok) throw new Error("Failed to fetch events");
-    events = await res.json();
-    renderEvents("all");
-  } catch (err) {
-    console.error("Could not load events:", err);
-    showToast("COULD NOT LOAD EVENTS — CHECK CONNECTION");
-  }
-}
+// No API fetch needed — events are hardcoded above
+// When backend is ready, replace this file with the API version
+renderEvents("all");
