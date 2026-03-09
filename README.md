@@ -4,21 +4,18 @@
 
 ```
 skidnz/
-├── index.html        ← Main page (open this in a browser)
+├── index.html       
 ├── css/
-│   └── styles.css    ← All styles
+│   └── styles.css    
 ├── js/
-│   ├── events.js     ← Event data (add/edit events here)
-│   └── app.js        ← App logic (filtering, modal)
-└── assets/           ← Place images here if needed
+│   ├── events.js     
+│   └── app.js        
+└── assets/           
 ```
 
 ## How to Launch
 
-**Option 1 — Double click**
-Just open `index.html` in any browser. No server needed.
-
-**Option 2 — Local server (recommended)**
+**Option 1 — Local server (recommended)**
 ```bash
 cd skidnz
 npx serve .
