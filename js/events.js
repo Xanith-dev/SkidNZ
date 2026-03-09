@@ -130,6 +130,4 @@ const events = [
   },
 ];
 
-// No API fetch needed — events are hardcoded above
-// When backend is ready, replace this file with the API version
 renderEvents("all");

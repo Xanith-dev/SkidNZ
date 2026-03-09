@@ -294,17 +294,12 @@ document.getElementById('close-modal').onclick = closeModal;
 document.getElementById('modal-bg').onclick = e => { if(e.target.id==='modal-bg') closeModal(); };
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 
-// ── TOAST ────────────────────────────────────────────
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-// ── INIT ─────────────────────────────────────────────
-// Init moved to fetchEvents() below — see bottom of file
-
-// ── OVERRIDE submitForm to use the API ───────────────
 async function submitForm() {
   const name  = document.getElementById('f-name').value.trim();
   const email = document.getElementById('f-email').value.trim();
@@ -321,7 +316,6 @@ async function submitForm() {
   if (!ack1||!ack2||!ack3) return showToast('PLEASE ACCEPT ALL ACKNOWLEDGEMENTS');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showToast('ENTER A VALID EMAIL');
 
-  // Find the event object by title to get its ID
   const selectedEvent = events.find(e => e.title === eventTitle);
   if (!selectedEvent) return showToast('INVALID EVENT SELECTED');
 
@@ -330,7 +324,6 @@ async function submitForm() {
   btn.disabled = true;
 
   try {
-    // 1. Submit registration
     const regRes = await fetch(`${API_URL}/registrations`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -350,7 +343,7 @@ async function submitForm() {
     }
     const reg = await regRes.json();
 
-    // 2. Create Stripe checkout session
+   
     const checkoutRes = await fetch(`${API_URL}/payments/checkout`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -360,7 +353,7 @@ async function submitForm() {
     if (!checkoutRes.ok) throw new Error('Could not create payment session');
     const { checkout_url } = await checkoutRes.json();
 
-    // 3. Redirect to Stripe
+    
     window.location.href = checkout_url;
 
   } catch (err) {
@@ -370,7 +363,7 @@ async function submitForm() {
   }
 }
 
-// ── Handle payment return from Stripe ────────────────
+
 (function handlePaymentReturn() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('payment') === 'success') {
@@ -379,7 +372,7 @@ async function submitForm() {
       document.getElementById('reg-form-wrap').style.display = 'none';
       document.getElementById('reg-success').classList.add('show');
     }, 100);
-    // Clean URL
+
     window.history.replaceState({}, '', window.location.pathname);
   } else if (params.get('payment') === 'cancelled') {
     showToast('PAYMENT CANCELLED — YOUR SPOT IS NOT CONFIRMED');
