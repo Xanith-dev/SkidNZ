@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKID NZ — Drift Events</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon64.png">
+</head>
+<body>
+
+  <nav>
+    <div class="logo" onclick="navigate('events')">SKID<span>NZ</span></div>
+    <ul>
+      <li><a href="#" onclick="navigate('events')">Events</a></li>
+      <li><a href="#" onclick="navigate('venues')">Venues</a></li>
+      <li><a href="#" onclick="navigate('series')">Series</a></li>
+      <li><a href="#" onclick="navigate('register')">Register</a><span class="tag">OPEN</span></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">☰</div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#" onclick="navigate('events');toggleMenu()">Events</a>
+    <a href="#" onclick="navigate('venues');toggleMenu()">Venues</a>
+    <a href="#" onclick="navigate('series');toggleMenu()">Series</a>
+    <a href="#" onclick="navigate('register');toggleMenu()">Register</a>
+  </div>
+
+  <!-- PAGES -->
+  <div id="page-events" class="page"></div>
+  <div id="page-venues" class="page hidden"></div>
+  <div id="page-series" class="page hidden"></div>
+  <div id="page-register" class="page hidden"></div>
+
+  <footer>
+    <div>
+      <div class="f-logo">SKID<span>NZ</span></div>
+      <div class="f-text" style="margin-top:6px">© 2025 — All rights reserved</div>
+    </div>
+    <div class="f-text" style="text-align:right">Built for the NZ drift community<br>contact@skidnz.co.nz</div>
+  </footer>
+
+  <!-- EVENT MODAL -->
+  <div id="modal-bg">
+    <div id="modal">
+      <button class="close-btn" id="close-modal">✕</button>
+      <h2 id="m-title"></h2>
+      <div class="m-date" id="m-date"></div>
+      <div class="m-body" id="m-body"></div>
+      <div class="m-detail">
+        <div class="m-row"><label>Venue</label><span id="m-venue"></span></div>
+        <div class="m-row"><label>Region</label><span id="m-region"></span></div>
+        <div class="m-row"><label>Category</label><span id="m-cat"></span></div>
+        <div class="m-row"><label>Entry</label><span id="m-entry"></span></div>
+      </div>
+      <a class="btn btn-r" id="m-link" href="#">Register Now →</a>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast"></div>
+
+  <script src="js/events.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
